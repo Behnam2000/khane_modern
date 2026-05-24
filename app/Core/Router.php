@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core;
+namespace Core;
 
 class Router
 {
@@ -10,14 +10,14 @@ class Router
 
     public function addRoute(string $method, string $path, array $controller)
     {
-        $this->routes = [
-            'method' => strtolower($method),
+        $this->routes[] = [
+            'method' => strtoupper($method),
             'path' => $this->normalizePath($path),
             'controller' => $controller
         ];
     }
 
-    public function normalizePath($path)
+    public function normalizePath(string $path)
     {
         $path = trim($path, '/');
         $path = "/{$path}/";
@@ -26,7 +26,7 @@ class Router
         return $path;
     }
 
-    public function dispatch(string $method, string $path)
+    public function dispatch(string $path, string $method)
     {
         $method = strtoupper($method);
         $path = $this->normalizePath($path);

@@ -1,14 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php include $this->resolve("layouts/header.php"); ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HomePage</title>
-</head>
+<main class="site-main container">
+    <section class="hero section-panel">
+        <h1>فضایی خاص برای زندگی شما</h1>
+        <p>خانه ی مدرن ترکیبی از زیبایی و عملکرد را در هر گوشه از منزل شما به وجود می‌آورد.</p>
+        <p><a class="button-link" href="./nemoneh.html">دیدن نمونه کارها</a></p>
+    </section>
+    <section class="grid-2">
+        <article class="card">
+            <h3>طراحی مبتنی بر نیاز</h3>
+            <p>هر پروژه با توجه به سبک زندگی و نیازهای شما طراحی می‌شود تا نتیجه‌ای منحصربه‌فرد داشته باشد.</p>
+        </article>
+        <article class="card">
+            <h3>ایده‌های نو</h3>
+            <p>ما از ترکیب رنگ و متریال جدید استفاده می‌کنیم تا هر فضا روحی تازه پیدا کند.</p>
+        </article>
+    </section>
+</main>
 
-<body>
-    <h1><?php echo $title; ?></h1>
-</body>
-
-</html>
+<?php include $this->resolve("layouts/footer.php"); ?>

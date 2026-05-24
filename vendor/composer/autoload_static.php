@@ -4,47 +4,27 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit329511d6d051c1b0e1896a7b674a4b33
+class ComposerStaticInitb261b40c5de29be3a4a1618a4109f48a
 {
+    public static $files = array (
+        '7cfb5440e20c878f6a526981aae83698' => __DIR__ . '/../..' . '/routes/web.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'V' =>
         array (
             'Views\\' => 6,
         ),
-        'T' =>
-        array (
-            'Tests\\' => 6,
-        ),
-        'R' =>
-        array (
-            'Routes\\' => 7,
-        ),
-        'P' =>
-        array (
-            'Public\\' => 7,
-        ),
         'M' =>
         array (
-            'Models\\' => 7,
-            'Middlewares\\' => 12,
-        ),
-        'H' =>
-        array (
-            'Helpers\\' => 8,
-        ),
-        'D' =>
-        array (
-            'Database\\' => 9,
+            'Model\\' => 6,
+            'Middleware\\' => 11,
         ),
         'C' =>
         array (
             'Core\\' => 5,
             'Controllers\\' => 12,
             'Config\\' => 7,
-        ),
-        'A' =>
-        array (
-            'App\\' => 4,
         ),
     );
 
@@ -53,37 +33,17 @@ class ComposerStaticInit329511d6d051c1b0e1896a7b674a4b33
         array (
             0 => __DIR__ . '/../..' . '/app/Views',
         ),
-        'Tests\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/tests',
-        ),
-        'Routes\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/app/Routes',
-        ),
-        'Public\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/public',
-        ),
-        'Models\\' =>
+        'Model\\' =>
         array (
             0 => __DIR__ . '/../..' . '/app/Models',
         ),
-        'Middlewares\\' =>
+        'Middleware\\' =>
         array (
-            0 => __DIR__ . '/../..' . '/app/Middlewares',
-        ),
-        'Helpers\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/app/Helpers',
-        ),
-        'Database\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/app/Database',
+            0 => __DIR__ . '/../..' . '/app/Middleware',
         ),
         'Core\\' =>
         array (
-            0 => __DIR__ . '/../..' . '/core',
+            0 => __DIR__ . '/../..' . '/app/Core',
         ),
         'Controllers\\' =>
         array (
@@ -92,10 +52,6 @@ class ComposerStaticInit329511d6d051c1b0e1896a7b674a4b33
         'Config\\' =>
         array (
             0 => __DIR__ . '/../..' . '/app/Config',
-        ),
-        'App\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/app',
         ),
     );
 
@@ -106,9 +62,9 @@ class ComposerStaticInit329511d6d051c1b0e1896a7b674a4b33
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit329511d6d051c1b0e1896a7b674a4b33::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit329511d6d051c1b0e1896a7b674a4b33::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit329511d6d051c1b0e1896a7b674a4b33::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb261b40c5de29be3a4a1618a4109f48a::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb261b40c5de29be3a4a1618a4109f48a::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitb261b40c5de29be3a4a1618a4109f48a::$classMap;
 
         }, null, ClassLoader::class);
     }

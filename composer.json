@@ -10,18 +10,15 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
-            "Core\\": "core/",
-            "Controllers\\": "app/Controllers/",
-            "Models\\": "app/Models/",
-            "Views\\": "app/Views/",
-            "Database\\": "app/Database/",
-            "Middlewares\\": "app/Middlewares/",
-            "Routes\\": "app/Routes/",
-            "Helpers\\": "app/Helpers/",
-            "Config\\": "app/Config/",
-            "Public\\": "public/",
-            "Tests\\": "tests/"
-        }
+            "Config\\": "app/Config",
+            "Controllers\\": "app/Controllers",
+            "Core\\": "app/Core",
+            "Middleware\\": "app/Middleware",
+            "Model\\": "app/Models",
+            "Views\\": "app/Views"
+        },
+        "files": [
+            "routes/web.php"
+        ]
     }
 }

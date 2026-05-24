@@ -7,7 +7,7 @@ namespace Controllers;
 use Core\Controller;
 use Config\Paths;
 
-class HomeController
+class AboutController
 {
     private Controller $controller;
 
@@ -16,11 +16,11 @@ class HomeController
         $this->controller = new Controller(Paths::VIEWS);
     }
 
-    public function index()
+    public function about()
     {
-        $this->controller->render('home.php', [
-            'title' => 'فضایی خاص برای زندگی شما | خانه ی مدرن',
-            'page' => 'صفحه ی اصلی (خانه)'
+        $this->controller->render('about.php', [
+            'title' => 'درباره ما',
+            'page' => 'صفحه ی درباره ما'
         ]);
     }
 }
