@@ -7,12 +7,13 @@ namespace Core;
 class Router
 {
     private array $routes = [];
+    private array $middlewares = [];
 
-    public function addRoute(string $method, string $path, array $controller)
+    public function add(string $path, string $method, array $controller)
     {
         $this->routes[] = [
-            'method' => strtoupper($method),
             'path' => $this->normalizePath($path),
+            'method' => strtoupper($method),
             'controller' => $controller
         ];
     }
@@ -26,7 +27,7 @@ class Router
         return $path;
     }
 
-    public function dispatch(string $path, string $method)
+    public function dispatch(string $path, string $method, Container $container = null)
     {
         $method = strtoupper($method);
         $path = $this->normalizePath($path);
@@ -38,9 +39,23 @@ class Router
 
             [$class, $function] = $route['controller'];
 
-            $controllerInstance = new $class();
+            $controllerInstance = $container ? $container->resolve($class) : new $class();
 
-            $controllerInstance->$function();
+            $action = fn() => $controllerInstance->$function();
+
+            foreach ($this->middlewares as $middleware) {
+                $middlewareInstance = $container ? $container->resolve($middleware) : new $middleware;
+                $action = fn() => $middlewareInstance->process($action);
+            }
+
+            $action();
+
+            return;
         }
+    }
+
+    public function addMiddleware(string $middleware)
+    {
+        $this->middlewares[] = $middleware;
     }
 }

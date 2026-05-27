@@ -18,9 +18,9 @@ class HomeController
 
     public function index()
     {
-        $this->controller->render('home.php', [
-            'title' => 'فضایی خاص برای زندگی شما | خانه ی مدرن',
-            'page' => 'صفحه ی اصلی (خانه)'
+        echo $this->controller->render('home.php', [
+            'title' => '  خانه مدرن | صفحه اصلی',
+            'page' => ' اصلی (خانه)'
         ]);
     }
 }

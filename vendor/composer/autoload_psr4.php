@@ -11,5 +11,6 @@ return array(
     'Middleware\\' => array($baseDir . '/app/Middleware'),
     'Core\\' => array($baseDir . '/app/Core'),
     'Controllers\\' => array($baseDir . '/app/Controllers'),
+    'Contracts\\' => array($baseDir . '/app/Contracts'),
     'Config\\' => array($baseDir . '/app/Config'),
 );

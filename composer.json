@@ -11,6 +11,7 @@
     "autoload": {
         "psr-4": {
             "Config\\": "app/Config",
+            "Contracts\\": "app/Contracts",
             "Controllers\\": "app/Controllers",
             "Core\\": "app/Core",
             "Middleware\\": "app/Middleware",
@@ -18,7 +19,8 @@
             "Views\\": "app/Views"
         },
         "files": [
-            "routes/web.php"
+            "routes/web.php",
+            "app/Config/Middleware.php"
         ]
     }
 }

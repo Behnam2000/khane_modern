@@ -8,6 +8,7 @@ class ComposerStaticInitb261b40c5de29be3a4a1618a4109f48a
 {
     public static $files = array (
         '7cfb5440e20c878f6a526981aae83698' => __DIR__ . '/../..' . '/routes/web.php',
+        'b02e7becdb8713cea333de39b225fd49' => __DIR__ . '/../..' . '/app/Config/Middleware.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -24,6 +25,7 @@ class ComposerStaticInitb261b40c5de29be3a4a1618a4109f48a
         array (
             'Core\\' => 5,
             'Controllers\\' => 12,
+            'Contracts\\' => 10,
             'Config\\' => 7,
         ),
     );
@@ -48,6 +50,10 @@ class ComposerStaticInitb261b40c5de29be3a4a1618a4109f48a
         'Controllers\\' =>
         array (
             0 => __DIR__ . '/../..' . '/app/Controllers',
+        ),
+        'Contracts\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/app/Contracts',
         ),
         'Config\\' =>
         array (

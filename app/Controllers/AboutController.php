@@ -18,9 +18,9 @@ class AboutController
 
     public function about()
     {
-        $this->controller->render('about.php', [
+        echo $this->controller->render('about.php', [
             'title' => 'درباره ما',
-            'page' => 'صفحه ی درباره ما'
+            'page' => 'درباره ما'
         ]);
     }
 }
