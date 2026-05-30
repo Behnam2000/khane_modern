@@ -8,18 +8,30 @@
     <link rel="stylesheet" href="/assets/styles.css" />
 </head>
 
-<body class="site-wrapper">
-    <header class="site-header">
-        <div class="inner container">
+<body class="<?php echo $bodyClass ?? 'site-wrapper'; ?>">
 
-            <h1 class="site-title">خانه ی مدرن</h1>
+    <?php /* Only show the header if we are NOT on an auth page */ ?>
+    <?php if (($bodyClass ?? '') !== 'auth-body'): ?>
+        <header class="site-header">
+            <div class="inner container">
 
-            <nav class="site-nav">
-                <a href="/">خانه</a>
-                <a href="./kadamat.html">خدمات</a>
-                <a href="./nemoneh.html">نمونه کارها</a>
-                <a href="/about">درباره ما</a>
-                <a href="./maghalat.html">مقالات</a>
-            </nav>
-        </div>
-    </header>
+                <a href="/" style="text-decoration: none;">
+                    <h1 class="site-title">خانه ی مدرن</h1>
+                </a>
+
+                <nav class="site-nav">
+                    <a href="/kadamat">خدمات</a>
+                    <a href="/nemoneh">نمونه کارها</a>
+                    <a href="/about">درباره ما</a>
+                    <a href="/maghalat">مقالات و مجله ها</a>
+                    <a href="/nazarat">نظرات و پیشنهاد ها</a>
+                </nav>
+
+                <div class="auth-actions">
+                    <a href="/login" class="nav-login">ورود</a>
+                    <a href="/register" class="button-link nav-register">ثبت نام</a>
+                </div>
+
+            </div>
+        </header>
+    <?php endif; ?>

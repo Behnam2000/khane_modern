@@ -37,7 +37,7 @@ class ComposerStaticInitb261b40c5de29be3a4a1618a4109f48a
         ),
         'Model\\' =>
         array (
-            0 => __DIR__ . '/../..' . '/app/Models',
+            0 => __DIR__ . '/../..' . '/app/Model',
         ),
         'Middleware\\' =>
         array (

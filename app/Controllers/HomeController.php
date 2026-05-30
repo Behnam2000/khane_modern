@@ -5,16 +5,10 @@ declare(strict_types=1);
 namespace Controllers;
 
 use Core\Controller;
-use Config\Paths;
 
 class HomeController
 {
-    private Controller $controller;
-
-    public function __construct()
-    {
-        $this->controller = new Controller(Paths::VIEWS);
-    }
+    public function __construct(private Controller $controller) {}
 
     public function index()
     {

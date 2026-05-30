@@ -4,7 +4,7 @@
     <section class="hero section-panel">
         <h1>فضایی خاص برای زندگی شما</h1>
         <p>خانه ی مدرن ترکیبی از زیبایی و عملکرد را در هر گوشه از منزل شما به وجود می‌آورد.</p>
-        <p><a class="button-link" href="./nemoneh.html">دیدن نمونه کارها</a></p>
+        <p><a class="button-link" href="/nemoneh">دیدن نمونه کارها</a></p>
     </section>
     <section class="grid-2">
         <article class="card">

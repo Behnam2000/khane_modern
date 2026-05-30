@@ -28,236 +28,913 @@ body {
         linear-gradient(180deg, #0b1723 0%, #081120 100%);
     color: var(--text-main);
     line-height: 1.7;
-}
+    direction: rtl;
+    /* auth pages use RTL */
 
-body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(31, 162, 255, 0.05), rgba(255, 255, 255, 0.02));
-    pointer-events: none;
-    z-index: -1;
-}
+    body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(31, 162, 255, 0.05), rgba(255, 255, 255, 0.02));
+        pointer-events: none;
 
-.site-wrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
+        /* Keep form inputs LTR for email/username values */
+        .auth-container input[type="email"],
+        .auth-container input[type="text"],
+        .auth-container input[type="tel"] {
+            direction: ltr;
+            text-align: left;
+        }
 
-.container {
-    width: min(1120px, calc(100% - 40px));
-    margin: 0 auto;
-}
+        .auth-container input::placeholder {
+            direction: ltr;
+            text-align: left;
+        }
 
-.site-header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: rgba(7, 18, 34, 0.94);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(14px);
-}
+        z-index: -1;
+    }
 
-.site-header .inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 22px 0;
-}
-
-.site-title {
-    margin: 0;
-    font-size: 1.6rem;
-    letter-spacing: 0.12em;
-    color: var(--accent);
-}
-
-.site-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: flex-end;
-}
-
-.site-nav a {
-    color: var(--text-muted);
-    text-decoration: none;
-    padding: 12px 18px;
-    border-radius: 999px;
-    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
-}
-
-.site-nav a:hover,
-.site-nav a:focus-visible {
-    background: rgba(31, 162, 255, 0.18);
-    color: var(--text-main);
-    transform: translateY(-1px);
-}
-
-.site-main {
-    flex: 1;
-    padding: 36px 0 24px;
-}
-
-.hero,
-.article-card,
-.card,
-.section-panel,
-.design-options .option,
-.testimonial-card {
-    background: rgba(18, 38, 63, 0.92);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 28px;
-    box-shadow: var(--shadow);
-}
-
-.hero,
-.section-panel,
-.card,
-.article-card,
-.testimonial-card {
-    padding: 32px;
-}
-
-.hero h1,
-.hero h2,
-.section-panel h2,
-.article-card h2,
-.card h3,
-.testimonial-card h3 {
-    margin-top: 0;
-    color: var(--text-main);
-}
-
-.hero p,
-.section-panel p,
-.article-card p,
-.card p,
-.testimonial-card p {
-    color: var(--text-muted);
-}
-
-.grid-3,
-.grid-2,
-.design-options {
-    display: grid;
-    gap: 22px;
-}
-
-.grid-3 {
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-}
-
-.grid-2 {
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-}
-
-.hero {
-    background: radial-gradient(circle at top left, rgba(31, 162, 255, 0.16), transparent 35%);
-}
-
-.hero h1,
-.hero h2 {
-    color: #f7fbff;
-}
-
-.hero p {
-    max-width: 760px;
-}
-
-.wide-button,
-.button-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 24px;
-    border-radius: 999px;
-    text-decoration: none;
-    color: #fff;
-    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-    box-shadow: 0 16px 30px rgba(31, 162, 255, 0.24);
-    transition: transform 0.25s ease, filter 0.25s ease;
-}
-
-.wide-button:hover,
-.button-link:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.05);
-}
-
-.design-options {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-}
-
-.design-options .option {
-    padding: 24px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    cursor: pointer;
-    transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
-}
-
-.design-options .option:hover,
-.design-options .option.selected {
-    border-color: rgba(31, 162, 255, 0.45);
-    background: rgba(31, 162, 255, 0.12);
-    transform: translateY(-3px);
-}
-
-.design-options img,
-.card img,
-.article-card img,
-.testimonial-card img {
-    width: 100%;
-    border-radius: 18px;
-    object-fit: cover;
-    display: block;
-    margin-bottom: 18px;
-}
-
-.testimonial-card p:last-child {
-    margin: 0;
-    font-size: 0.95rem;
-    color: var(--accent);
-}
-
-.site-footer {
-    text-align: center;
-    padding: 28px 0;
-    color: var(--text-muted);
-    background: linear-gradient(180deg, rgba(7, 18, 34, 0.95), rgba(7, 18, 34, 0.98));
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.site-footer p {
-    margin: 0;
-}
-
-@media (max-width: 860px) {
-    .site-header .inner {
+    .site-wrapper {
+        min-height: 100vh;
+        display: flex;
         flex-direction: column;
-        align-items: stretch;
+    }
+
+    .container {
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+    }
+
+    .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(7, 18, 34, 0.94);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(14px);
+    }
+
+    .site-header .inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 22px 0;
+    }
+
+    .site-title {
+        margin: 0;
+        font-size: 1.6rem;
+        letter-spacing: 0.12em;
+        color: var(--accent);
     }
 
     .site-nav {
-        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: flex-end;
     }
-}
 
-@media (max-width: 640px) {
+    .site-nav a {
+        color: var(--text-muted);
+        text-decoration: none;
+        padding: 12px 18px;
+        border-radius: 999px;
+        transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    }
+
+    .site-nav a:hover,
+    .site-nav a:focus-visible {
+        background: rgba(31, 162, 255, 0.18);
+        color: var(--text-main);
+        transform: translateY(-1px);
+    }
+
+    .site-main {
+        flex: 1;
+        padding: 36px 0 24px;
+    }
 
     .hero,
     .article-card,
     .card,
     .section-panel,
+    .design-options .option,
     .testimonial-card {
-        padding: 22px;
+        background: rgba(18, 38, 63, 0.92);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 28px;
+        box-shadow: var(--shadow);
     }
 
-    .site-nav a {
+    .hero,
+    .section-panel,
+    .card,
+    .article-card,
+    .testimonial-card {
+        padding: 32px;
+    }
+
+    .hero h1,
+    .hero h2,
+    .section-panel h2,
+    .article-card h2,
+    .card h3,
+    .testimonial-card h3 {
+        margin-top: 0;
+        color: var(--text-main);
+    }
+
+    .hero p,
+    .section-panel p,
+    .article-card p,
+    .card p,
+    .testimonial-card p {
+        color: var(--text-muted);
+    }
+
+    .grid-3,
+    .grid-2,
+    .design-options {
+        display: grid;
+        gap: 22px;
+    }
+
+    .grid-3 {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .grid-2 {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    .hero {
+        background: radial-gradient(circle at top left, rgba(31, 162, 255, 0.16), transparent 35%);
+    }
+
+    .hero h1,
+    .hero h2 {
+        color: #f7fbff;
+    }
+
+    .hero p {
+        max-width: 760px;
+    }
+
+    .wide-button,
+    .button-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 24px;
+        border-radius: 999px;
+        text-decoration: none;
+        color: #fff;
+        background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+        box-shadow: 0 16px 30px rgba(31, 162, 255, 0.24);
+        transition: transform 0.25s ease, filter 0.25s ease;
+    }
+
+    .wide-button:hover,
+    .button-link:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.05);
+    }
+
+    .design-options {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .design-options .option {
+        padding: 24px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        cursor: pointer;
+        transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+    }
+
+    .design-options .option:hover,
+    .design-options .option.selected {
+        border-color: rgba(31, 162, 255, 0.45);
+        background: rgba(31, 162, 255, 0.12);
+        transform: translateY(-3px);
+    }
+
+    .design-options img,
+    .card img,
+    .article-card img,
+    .testimonial-card img {
         width: 100%;
+        border-radius: 18px;
+        object-fit: cover;
+        display: block;
+        margin-bottom: 18px;
+    }
+
+    .testimonial-card p:last-child {
+        margin: 0;
+        font-size: 0.95rem;
+        color: var(--accent);
+    }
+
+    .site-footer {
         text-align: center;
+        padding: 28px 0;
+        color: var(--text-muted);
+        background: linear-gradient(180deg, rgba(7, 18, 34, 0.95), rgba(7, 18, 34, 0.98));
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .site-footer p {
+        margin: 0;
+    }
+
+    @media (max-width: 860px) {
+        .site-header .inner {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .site-nav {
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 640px) {
+
+        .hero,
+        .article-card,
+        .card,
+        .section-panel,
+        .testimonial-card {
+            padding: 22px;
+        }
+
+        .site-nav a {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    /* ========== Authentication Forms (Login & Register) ========== */
+
+    /* Form Container Styles */
+    .auth-body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    .auth-container {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 450px;
+        padding: 40px;
+    }
+
+    .form-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .form-header h1 {
+        color: #333;
+        font-size: 28px;
+        margin-bottom: 8px;
+    }
+
+    .form-header p {
+        color: #b0c4de;
+        font-size: 14px;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .form-group label {
+        display: block;
+        color: #ffffff;
+        font-weight: 500;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+
+    .required {
+        color: #e74c3c;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="tel"],
+    input[type="phone"] {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        font-family: inherit;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    input[type="tel"]:focus,
+    input[type="phone"]:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    /* Password Strength Indicator */
+    .password-strength {
+        margin-top: 8px;
+        height: 4px;
+        background: #e0e0e0;
+        border-radius: 2px;
+        overflow: hidden;
+        display: none;
+    }
+
+    .password-strength-bar {
+        height: 100%;
+        width: 0%;
+        transition: width 0.3s ease;
+    }
+
+    .strength-weak {
+        background: #e74c3c;
+    }
+
+    .strength-medium {
+        background: #f39c12;
+    }
+
+    .strength-strong {
+        background: #27ae60;
+    }
+
+    .strength-text {
+        font-size: 12px;
+        margin-top: 4px;
+        color: #b0c4de;
+        display: none;
+    }
+
+    /* Checkbox Styles */
+    .form-group.checkbox {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+
+    input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        margin-right: 10px;
+        margin-top: 2px;
+        cursor: pointer;
+        accent-color: #667eea;
+        flex-shrink: 0;
+    }
+
+    .checkbox label {
+        margin: 0;
+        cursor: pointer;
+        font-weight: normal;
+        font-size: 13px;
+        color: #ffffff;
+    }
+
+    .checkbox a {
+        color: #667eea;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .checkbox a:hover {
+        color: #764ba2;
+        text-decoration: underline;
+    }
+
+    /* Login Form Remember Me */
+    .form-group.remember-me {
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+
+    .remember-me label {
+        margin: 0;
+        cursor: pointer;
+        font-weight: normal;
+    }
+
+    .forgot-password {
+        float: right;
+        color: #667eea;
+        text-decoration: none;
+        font-size: 13px;
+        transition: color 0.3s ease;
+    }
+
+    .forgot-password:hover {
+        color: #764ba2;
+        text-decoration: underline;
+    }
+
+    /* Button Styles */
+    .btn-login,
+    .btn-register {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        margin-bottom: 15px;
+    }
+
+    .btn-login:hover,
+    .btn-register:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-login:active,
+    .btn-register:active {
+        transform: translateY(0);
+    }
+
+    .btn-register {
+        margin-top: 10px;
+    }
+
+    .btn-register:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    /* Divider */
+    .divider {
+        display: flex;
+        align-items: center;
+        margin: 20px 0;
+        color: #ccc;
+    }
+
+    .divider::before,
+    .divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: #e0e0e0;
+    }
+
+    .divider span {
+        padding: 0 10px;
+        font-size: 13px;
+        color: #999;
+    }
+
+    /* Form Footer */
+    .form-footer {
+        text-align: center;
+        color: #666;
+        font-size: 14px;
+    }
+
+    .form-footer a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+
+    .form-footer a:hover {
+        color: #764ba2;
+        text-decoration: underline;
+    }
+
+    /* Message Styles */
+    .error-message {
+        background-color: #fee;
+        color: #c33;
+        padding: 10px 12px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+        font-size: 13px;
+        border-left: 4px solid #c33;
+    }
+
+    .success-message {
+        background-color: #efe;
+        color: #3c3;
+        padding: 10px 12px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+        font-size: 13px;
+        border-left: 4px solid #3c3;
+    }
+
+    /* Form Row for Multi-Column Layout */
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .form-row .form-group {
+        margin-bottom: 0;
+    }
+
+    /* Responsive Design for Forms */
+    @media (max-width: 480px) {
+        .auth-container {
+            padding: 30px 20px;
+        }
+
+        .form-header h1 {
+            font-size: 24px;
+        }
+
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Hide global site header/footer when showing auth pages */
+    .auth-body .site-header,
+    .auth-body .site-footer {
+        display: none;
+    }
+
+    /* Ensure auth forms are centered and consistent */
+    .auth-body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+    }
+
+    .auth-container {
+        max-width: 420px;
+        width: 100%;
+        margin: 0 auto;
+        direction: ltr;
+        /* keep form inputs LTR inside RTL site */
+    }
+
+    /* Make sure buttons and visuals match across pages */
+    .btn-login,
+    .btn-register {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+
+
+}
+
+/* Styling for Auth Forms aligned with the Main Site Theme */
+.auth-panel {
+    max-width: 550px;
+    margin: 40px auto;
+    padding: 30px;
+    text-align: right;
+}
+
+.auth-panel .form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-panel .form-header h1 {
+    margin-bottom: 10px;
+    font-size: 2rem;
+    color: #ffffff;
+}
+
+.site-form .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* ========== Fixed Input Field Styling ========== */
+.site-form input[type="text"],
+.site-form input[type="email"],
+.site-form input[type="password"],
+.site-form input[type="tel"],
+.site-form input[type="phone"],
+.site-form input[type="number"] {
+    width: 100%;
+    padding: 14px 16px;
+
+    /* Brain-soothing dark styling */
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/* Make sure the placeholder text is readable but not overly bright */
+.site-form input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+/* Beautiful glowing focus state to match your blue accents */
+.site-form input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(31, 162, 255, 0.15);
+}
+
+/* Remove the ugly browser arrows from the number input */
+.site-form input[type="number"]::-webkit-inner-spin-button,
+.site-form input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.site-form input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.site-form .form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.site-form .form-row .form-group {
+    flex: 1;
+}
+
+.site-form .remember-me {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+    /* Keeps correct RTL alignment for checkbox and link */
+    font-size: 0.9rem;
+}
+
+.site-form .checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.site-form .checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    font-size: 0.9rem;
+}
+
+/* Forces buttons to match the global site button styling */
+.site-form button.button-link {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    padding: 14px;
+    font-size: 1rem;
+    font-family: inherit;
+    margin-top: 10px;
+}
+
+.site-form .divider {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+.site-form .divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #445566;
+    z-index: 1;
+}
+
+.site-form .divider span {
+    background: #111e38;
+    /* Match this with your card or panel background color */
+    padding: 0 15px;
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+}
+
+.site-form .form-footer {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    color: #ffffff;
+}
+
+body .site-form label,
+body .form-group label,
+body .checkbox label,
+body .remember-me label {
+    color: #ffffff !important;
+}
+
+/* ========== Enhanced Field Error Styling ========== */
+
+.field-error {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    padding: 12px 16px;
+    background: rgba(231, 76, 60, 0.12);
+    border-right: 4px solid #e74c3c;
+    border-radius: 10px;
+    color: #ff9f9f;
+    font-size: 13.5px;
+    font-weight: 500;
+    line-height: 1.5;
+    animation: errorSlideIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    text-align: right;
+    position: relative;
+    overflow: hidden;
+}
+
+.field-error::before {
+    content: '⚠';
+    font-size: 18px;
+    flex-shrink: 0;
+    color: #e74c3c;
+    line-height: 1;
+    filter: drop-shadow(0 0 4px rgba(231, 76, 60, 0.4));
+}
+
+.field-error::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(231, 76, 60, 0.06), transparent);
+    pointer-events: none;
+}
+
+@keyframes errorSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Highlight inputs with errors */
+.form-group.has-error input[type="text"],
+.form-group.has-error input[type="email"],
+.form-group.has-error input[type="password"],
+.form-group.has-error input[type="tel"],
+.form-group.has-error input[type="phone"],
+.form-group.has-error input[type="number"] {
+    border-color: #e74c3c !important;
+    box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.15), inset 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+    background: rgba(231, 76, 60, 0.04) !important;
+    transition: all 0.3s ease !important;
+}
+
+.form-group.has-error input:focus {
+    border-color: #ff6b6b !important;
+    box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.25), 0 0 15px rgba(231, 76, 60, 0.1) !important;
+}
+
+/* Checkbox group error styling */
+.form-group.checkbox.has-error {
+    background: rgba(231, 76, 60, 0.08);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin: -10px -14px;
+    border-right: 3px solid #e74c3c;
+    animation: errorSlideIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.form-group.checkbox.has-error .field-error {
+    border-right: none;
+    background: transparent;
+    padding: 8px 0 0 0;
+    margin-top: 6px;
+}
+
+/* Subtle pulse animation for error state on page load */
+.form-group.has-error {
+    animation: errorGroupPulse 0.5s ease-out;
+}
+
+@keyframes errorGroupPulse {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-4px);
+    }
+
+    50% {
+        transform: translateX(4px);
+    }
+
+    75% {
+        transform: translateX(-2px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Smooth transition for input borders */
+.site-form input[type="text"],
+.site-form input[type="email"],
+.site-form input[type="password"],
+.site-form input[type="tel"],
+.site-form input[type="phone"],
+.site-form input[type="number"] {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+/* ========== Header Auth Actions ========== */
+.auth-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* New Outline "Ghost" Button for Login */
+.nav-login {
+    /* The !important tags force the browser to ignore the ugly purple visited state */
+    color: var(--text-main) !important;
+    text-decoration: none !important;
+
+    /* Button shape and spacing */
+    padding: 12px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    background: transparent;
+    font-size: 0.95rem;
+
+    /* Smooth hover animations */
+    transition: all 0.3s ease;
+}
+
+.nav-login:hover {
+    background: rgba(31, 162, 255, 0.1);
+    border-color: var(--accent);
+    color: var(--accent) !important;
+    transform: translateY(-2px);
+}
+
+.nav-register {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+}
+
+/* Ensure the header stacks cleanly on mobile screens */
+@media (max-width: 860px) {
+    .auth-actions {
+        justify-content: center;
+        margin-top: 14px;
+        width: 100%;
     }
 }
