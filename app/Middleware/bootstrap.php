@@ -1,6 +1,9 @@
 <?php
 
 require __DIR__ . "/../../vendor/autoload.php";
+require __DIR__ . "/env_helper.php";
+
+loadEnv(dirname(__DIR__, 2) . '/.env');
 
 use Core\App;
 use Config\Paths;

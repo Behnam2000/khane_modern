@@ -22,5 +22,8 @@
             "routes/web.php",
             "app/Config/Middleware.php"
         ]
+    },
+    "scripts": {
+        "db": "php cli.php"
     }
 }

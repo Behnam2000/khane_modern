@@ -72,7 +72,10 @@ class Container
 
         $factory = $this->definitions[$id];
 
-        $dependency = $factory();
+        $ref = new \ReflectionFunction($factory);
+        $dependency = $ref->getNumberOfParameters() > 0
+            ? $factory($this)
+            : $factory();
 
         $this->resolved[$id] = $dependency;
 
