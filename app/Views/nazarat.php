@@ -5,31 +5,66 @@
     <h2>نظرات مشتریان</h2>
     <p>بازخوردهایی که نشان می‌دهد مشتریان چگونه فضای جدید خود را تجربه کرده‌اند.</p>
   </section>
+
+  <?php if (!empty($success)): ?>
+    <div class="success-message"><?php echo e($success); ?></div>
+  <?php endif; ?>
+
   <section class="grid-3">
-    <article class="testimonial-card">
-      <img
-        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='%23f1f1f1'/%3E%3Ccircle cx='50' cy='35' r='28' fill='%23c3c3c3'/%3E%3Crect x='20' y='62' width='60' height='20' rx='10' fill='%23c3c3c3'/%3E%3C/svg%3E"
-        alt="مشتری ۱" />
-      <h3>مریم سادات</h3>
-      <p>طراحی آشپزخانه ما را به فضایی کاربردی و زیبا تبدیل کرد؛ همه اعضای خانواده از آن لذت می‌برند.</p>
-      <p>★★★★☆</p>
-    </article>
-    <article class="testimonial-card">
-      <img
-        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='%23f1f1f1'/%3E%3Ccircle cx='50' cy='35' r='28' fill='%23c3c3c3'/%3E%3Crect x='20' y='62' width='60' height='20' rx='10' fill='%23c3c3c3'/%3E%3C/svg%3E"
-        alt="مشتری ۲" />
-      <h3>رضا احمدی</h3>
-      <p>نتیجه کار فراتر از انتظار بود؛ فضای خانه‌ام اکنون سازمان‌یافته و شیک به نظر می‌رسد.</p>
-      <p>★★★★☆</p>
-    </article>
-    <article class="testimonial-card">
-      <img
-        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='%23f1f1f1'/%3E%3Ccircle cx='50' cy='35' r='28' fill='%23c3c3c3'/%3E%3Crect x='20' y='62' width='60' height='20' rx='10' fill='%23c3c3c3'/%3E%3C/svg%3E"
-        alt="مشتری ۳" />
-      <h3>الهام ناصری</h3>
-      <p>در طراحی جدید، اتاق خواب من به فضایی آرام و دلپذیر تبدیل شده است.</p>
-      <p>★★★★☆</p>
-    </article>
+    <?php if (empty($reviews)): ?>
+      <p>هنوز نظری تأیید نشده است. اولین نفری باشید که نظر می‌دهد.</p>
+    <?php else: ?>
+      <?php foreach ($reviews as $review): ?>
+        <article class="testimonial-card">
+          <h3><?php echo e(trim(($review['first_name'] ?? '') . ' ' . ($review['last_name'] ?? ''))); ?></h3>
+          <p><?php echo e($review['body']); ?></p>
+          <?php if (!empty($review['rating'])): ?>
+            <p><?php echo starRating((int) $review['rating']); ?></p>
+          <?php endif; ?>
+          <?php if (!empty($review['admin_response'])): ?>
+            <blockquote class="admin-reply">
+              <strong>پاسخ مدیر:</strong>
+              <?php echo e($review['admin_response']); ?>
+            </blockquote>
+          <?php endif; ?>
+        </article>
+      <?php endforeach; ?>
+    <?php endif; ?>
+  </section>
+
+  <section class="section-panel review-form-panel">
+    <h3>ثبت نظر شما</h3>
+    <?php if (!empty($currentUser)): ?>
+      <form action="/nazarat" method="POST" class="site-form">
+        <input type="hidden" name="token" value="<?php echo e($csrfToken ?? ''); ?>" />
+
+        <div class="form-group <?php echo array_key_exists('body', $errors ?? []) ? 'has-error' : ''; ?>">
+          <label for="body">متن نظر</label>
+          <textarea id="body" name="body" rows="4" required><?php echo e($_POST['body'] ?? ''); ?></textarea>
+          <?php if (array_key_exists('body', $errors ?? [])): ?>
+            <div class="field-error"><?php echo e($errors['body'][0]); ?></div>
+          <?php endif; ?>
+        </div>
+
+        <div class="form-group <?php echo array_key_exists('rating', $errors ?? []) ? 'has-error' : ''; ?>">
+          <label for="rating">امتیاز</label>
+          <select id="rating" name="rating" required>
+            <?php for ($i = 5; $i >= 1; $i--): ?>
+              <option value="<?php echo $i; ?>" <?php echo (($_POST['rating'] ?? '') == $i) ? 'selected' : ''; ?>>
+                <?php echo starRating($i); ?>
+              </option>
+            <?php endfor; ?>
+          </select>
+          <?php if (array_key_exists('rating', $errors ?? [])): ?>
+            <div class="field-error"><?php echo e($errors['rating'][0]); ?></div>
+          <?php endif; ?>
+        </div>
+
+        <button type="submit" class="button-link">ارسال نظر</button>
+      </form>
+    <?php else: ?>
+      <p>برای ثبت نظر ابتدا <a href="/login">وارد حساب</a> خود شوید یا <a href="/register">ثبت‌نام</a> کنید.</p>
+    <?php endif; ?>
   </section>
 </main>
 

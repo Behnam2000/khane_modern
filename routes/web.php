@@ -14,9 +14,9 @@ use Controllers\{
     NazaratController,
     NemonehController,
     RangController,
-    RegisterController,
     TermsController
 };
+use Middleware\{AuthRequiredMiddleware, GuestOnlyMiddleware};
 
 
 function addRoutes(App $app)
@@ -24,11 +24,13 @@ function addRoutes(App $app)
     $app->get('/', [HomeController::class, 'index']);
     $app->get('/about', [AboutController::class, 'about']);
 
-    $app->get('/login', [AuthController::class, 'login']);
-    $app->post('/login', [AuthController::class, 'loginSubmit']);
+    $app->get('/login', [AuthController::class, 'login'])->add(GuestOnlyMiddleware::class);
+    $app->post('/login', [AuthController::class, 'loginSubmit'])->add(GuestOnlyMiddleware::class);
 
-    $app->get('/register', [RegisterController::class, 'register']);
-    $app->post('/register', [RegisterController::class, 'registerSubmit']);
+    $app->get('/register', [AuthController::class, 'register'])->add(GuestOnlyMiddleware::class);
+    $app->post('/register', [AuthController::class, 'registerSubmit'])->add(GuestOnlyMiddleware::class);
+
+    $app->post('/logout', [AuthController::class, 'logout'])->add(AuthRequiredMiddleware::class);
 
     $app->get('/chideman', [ChidemanController::class, 'index']);
 
@@ -39,10 +41,13 @@ function addRoutes(App $app)
     $app->get('/material', [MaterialController::class, 'index']);
 
     $app->get('/nazarat', [NazaratController::class, 'index']);
+    $app->post('/nazarat', [NazaratController::class, 'addComment'])->add(AuthRequiredMiddleware::class);
 
     $app->get('/nemoneh', [NemonehController::class, 'index']);
 
     $app->get('/rang', [RangController::class, 'index']);
 
     $app->get('/terms', [TermsController::class, 'index']);
+
+    addAdminRoutes($app);
 }

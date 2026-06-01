@@ -32,11 +32,35 @@ class ValidatorService
         $this->validator->validate($formData, [
             'first_name' => ['required'],
             'last_name' => ['required'],
-            'phone' => ['required', 'phoneValidation'],
             'email' => ['required', 'emailValidation'],
+            'phone' => ['required', 'phoneValidation'],
             'password' => ['required'],
-            'confirmPassword' => ['required', 'match:password'],
+            'confirm_password' => ['required', 'match:password'],
             'terms' => ['required']
+        ]);
+    }
+
+    public function validateReview(array $formData)
+    {
+        $this->validator->validate($formData, [
+            'body' => ['required'],
+            'rating' => ['required', 'in:1,2,3,4,5'],
+        ]);
+    }
+
+    public function validateLogin(array $loginFormData)
+    {
+        $this->validator->validate($loginFormData, [
+            'phone' => ['required'],
+            'password' => ['required']
+        ]);
+    }
+
+    public function validateProfile(array $formData)
+    {
+        $this->validator->validate($formData, [
+            'phone' => ['required'],
+            'email' => ['required', 'emailValidation']
         ]);
     }
 }

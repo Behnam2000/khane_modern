@@ -28,8 +28,19 @@
                 </nav>
 
                 <div class="auth-actions">
-                    <a href="/login" class="nav-login">ورود</a>
-                    <a href="/register" class="button-link nav-register">ثبت نام</a>
+                    <?php if (!empty($currentUser)): ?>
+                        <span class="nav-user">سلام، <?php echo e($currentUser['first_name']); ?></span>
+                        <?php if (($currentUser['role'] ?? '') === 'admin'): ?>
+                            <a href="/admin" class="nav-login">پنل مدیریت</a>
+                        <?php endif; ?>
+                        <form action="/logout" method="POST" class="inline-form">
+                            <input type="hidden" name="token" value="<?php echo e($csrfToken ?? ''); ?>" />
+                            <button type="submit" class="nav-login">خروج</button>
+                        </form>
+                    <?php else: ?>
+                        <a href="/login" class="nav-login">ورود</a>
+                        <a href="/register" class="button-link nav-register">ثبت نام</a>
+                    <?php endif; ?>
                 </div>
 
             </div>

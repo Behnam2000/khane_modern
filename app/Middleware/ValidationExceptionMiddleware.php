@@ -28,7 +28,9 @@ class ValidationExceptionMiddleware implements MiddlewareContract
             $_SESSION['errors'] = $e->errors;
             $_SESSION['oldFormData'] = $formattedFormData;
 
-            $referer = $_SERVER['HTTP_REFERER'];
+            session_write_close();
+
+            $referer = $_SERVER['HTTP_REFERER'] ?? $_SERVER['REQUEST_URI'] ?? '/';
             redirectTo($referer);
         }
     }

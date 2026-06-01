@@ -20,6 +20,14 @@ class SessionMiddleware implements MiddlewareContract
             throw new SessionException("Headers already sent. Consider enabling output-buffering. Data outputed from {$filename} - Line: {$line}.");
         }
 
+        $appEnv = $_ENV['APP_ENV'] ?? getenv('APP_ENV') ?: 'development';
+
+        session_set_cookie_params([
+            'secure' => $appEnv === 'production',
+            'httponly' => true,
+            'samesite' => 'lax',
+        ]);
+
         session_start();
 
         $callback();

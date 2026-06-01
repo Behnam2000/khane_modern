@@ -25,7 +25,8 @@ $oldFormData = $oldFormData ?? [];
             </div>
         <?php endif; ?>
 
-        <form action="/register" method="POST" id="registerForm" class="site-form">
+        <form action="" method="POST" id="registerForm" class="site-form">
+            <input type="hidden" name="token" value="<?php echo e($csrfToken ?? ''); ?>" />
             <div class="form-row">
                 <div class="form-group <?php echo array_key_exists('first_name', $errors) ? 'has-error' : ''; ?>">
                     <label for="first_name">نام <span class="required">*</span></label>
@@ -34,7 +35,7 @@ $oldFormData = $oldFormData ?? [];
                         id="first_name"
                         name="first_name"
                         placeholder="نام خود را وارد کنید"
-                        value="<?php echo e($_POST['first_name'] ?? ''); ?>">
+                        value="<?php echo e($oldFormData['first_name'] ?? ''); ?>">
                     <?php if (array_key_exists('first_name', $errors)) : ?>
                         <div class="field-error"><?php echo e($errors['first_name'][0]); ?></div>
                     <?php endif; ?>
@@ -47,7 +48,7 @@ $oldFormData = $oldFormData ?? [];
                         id="last_name"
                         name="last_name"
                         placeholder="نام خانوادگی خود را وارد کنید"
-                        value="<?php echo e($_POST['last_name'] ?? ''); ?>">
+                        value="<?php echo e($oldFormData['last_name'] ?? ''); ?>">
                     <?php if (array_key_exists('last_name', $errors)) : ?>
                         <div class="field-error"><?php echo e($errors['last_name'][0]); ?></div>
                     <?php endif; ?>
@@ -61,7 +62,7 @@ $oldFormData = $oldFormData ?? [];
                     id="email"
                     name="email"
                     placeholder=""
-                    value="<?php echo e($_POST['email'] ?? ''); ?>">
+                    value="<?php echo e($oldFormData['email'] ?? ''); ?>">
                 <?php if (array_key_exists('email', $errors)) : ?>
                     <div class="field-error"><?php echo e($errors['email'][0]); ?></div>
                 <?php endif; ?>
@@ -70,11 +71,11 @@ $oldFormData = $oldFormData ?? [];
             <div class="form-group <?php echo array_key_exists('phone', $errors) ? 'has-error' : ''; ?>">
                 <label for="phone">شماره تلفن همراه <span class="required">*</span></label>
                 <input
-                    type="number"
+                    type="tel"
                     id="phone"
                     name="phone"
                     placeholder="09123456789"
-                    value="<?php echo e($_POST['phone'] ?? ''); ?>">
+                    value="<?php echo e($oldFormData['phone'] ?? ''); ?>">
                 <?php if (array_key_exists('phone', $errors)) : ?>
                     <div class="field-error"><?php echo e($errors['phone'][0]); ?></div>
                 <?php endif; ?>

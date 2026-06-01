@@ -13,8 +13,8 @@ final class Database
             'host'     => env('DB_HOST', 'localhost'),
             'port'     => (int) env('DB_PORT', '3306'),
             'dbname'   => env('DB_NAME', 'modern'),
-            'username' => env('DB_USER', 'root'),
-            'password' => env('DB_PASS', ''),
+            'username' => env('DB_USER', 'behnam'),
+            'password' => env('DB_PASS', '2313'),
         ];
     }
 }

@@ -78,6 +78,7 @@ class UserService
 
         session_regenerate_id();
         $_SESSION['user'] = (int) $this->db->id();
+        $_SESSION['role'] = 'user';
     }
 
     public function login(array $formData): void
@@ -98,18 +99,19 @@ class UserService
 
         session_regenerate_id();
         $_SESSION['user'] = (int) $user['id'];
+        $_SESSION['role'] = $user['role'];
     }
 
-    public function updateProfile(int $id, string $username, string $email): void
+    public function updateProfile(int $id, string $phone, string $email): void
     {
         $this->db->query(
             'UPDATE users
-             SET username = :username, email = :email, updated_at = CURRENT_TIMESTAMP
+             SET phone = :phone, email = :email, updated_at = CURRENT_TIMESTAMP
              WHERE id = :id',
             [
-                'id'       => $id,
-                'username' => $username,
-                'email'    => $email,
+                'id'    => $id,
+                'phone' => $phone,
+                'email' => $email,
             ]
         );
     }
@@ -132,7 +134,7 @@ class UserService
 
     public function logout(): void
     {
-        unset($_SESSION['user']);
+        unset($_SESSION['user'], $_SESSION['role']);
         session_regenerate_id();
     }
 }

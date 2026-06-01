@@ -14,8 +14,10 @@ class FlashMiddleware implements MiddlewareContract
     public function process(callable $callback)
     {
         $this->controller->addGlobal('errors', $_SESSION['errors'] ?? []);
-
         unset($_SESSION['errors']);
+
+        $this->controller->addGlobal('success', $_SESSION['success'] ?? null);
+        unset($_SESSION['success']);
 
         $this->controller->addGlobal('oldFormData', $_SESSION['oldFormData'] ?? []);
 
