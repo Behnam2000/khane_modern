@@ -10,12 +10,6 @@
             <p>وارد حساب کاربری خود شوید</p>
         </div>
 
-        <?php if (!empty($errors['password'][0])): ?>
-            <div class="error-message">
-                <?php echo e($errors['password'][0]); ?>
-            </div>
-        <?php endif; ?>
-
         <?php if (!empty($success)): ?>
             <div class="success-message">
                 <?php echo e($success); ?>
@@ -39,7 +33,7 @@
                 <?php endif; ?>
             </div>
 
-            <div class="form-group">
+            <div class="form-group <?php echo array_key_exists('password', $errors ?? []) ? 'has-error' : ''; ?>">
                 <label for="password">رمز عبور</label>
                 <input
                     type="password"
@@ -47,6 +41,9 @@
                     name="password"
                     placeholder="رمز عبور خود را وارد کنید"
                     required>
+                <?php if (array_key_exists('password', $errors ?? [])): ?>
+                    <div class="field-error"><?php echo e($errors['password'][0]); ?></div>
+                <?php endif; ?>
             </div>
 
             <div class="form-group remember-me">

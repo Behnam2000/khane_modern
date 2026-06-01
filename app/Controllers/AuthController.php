@@ -17,8 +17,17 @@ class AuthController
 
     public function login()
     {
+        $errors = $_SESSION['errors'] ?? null;
+        $oldFormData = $_SESSION['oldFormData'] ?? [];
+
+        // Clear the session data so it doesn't persist on refresh
+        unset($_SESSION['errors']);
+        unset($_SESSION['oldFormData']);
+
         echo $this->controller->render('login.php', [
             'title' => 'ورود به حساب کاربری',
+            'errors' => $errors,
+            'oldFormData' => $oldFormData
         ]);
     }
 
@@ -31,8 +40,17 @@ class AuthController
 
     public function register()
     {
+        $errors = $_SESSION['errors'] ?? null;
+        $oldFormData = $_SESSION['oldFormData'] ?? [];
+
+        // Clear the session data so it doesn't persist on refresh
+        unset($_SESSION['errors']);
+        unset($_SESSION['oldFormData']);
+
         echo $this->controller->render('register.php', [
             'title' => 'registeruser',
+            'errors' => $errors,
+            'oldFormData' => $oldFormData
         ]);
     }
 
